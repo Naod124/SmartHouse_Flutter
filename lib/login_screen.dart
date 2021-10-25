@@ -1,13 +1,15 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
+import 'home.dart';
+
 
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   final TextEditingController _phone = TextEditingController();
 
-  final RegExp regExp = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,13 +63,10 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {
                   if (_phone.text.isEmpty) {
                     showErrorSnakBar(context, 'Please Enter the code ');
-                  } else if (!regExp.hasMatch(_phone.text)) {
-                    showErrorSnakBar(
-                        context, 'Please Enter Valide Phone Number[');
-                  } else {
+                  }  else {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>  Hoem()
+                      MaterialPageRoute(builder: (context) => Hoem()
                       ),
                     );
                   }
@@ -80,3 +79,17 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+
+  void showErrorSnakBar(context, text) {
+    var snackBar = SnackBar(
+        backgroundColor: Colors.white70,
+        elevation: 2,
+        duration: const Duration(seconds: 1),
+        content: Text(
+          text,
+          style: TextStyle(color: Theme.of(context).errorColor),
+        ));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+}
+

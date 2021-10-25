@@ -1,12 +1,26 @@
+import 'package:flutter/material.dart';
+
+
+class Hoem extends StatefulWidget {
+  Hoem({Key? key}) : super(key: key);
+
+  @override
+  State<Hoem> createState() => _HoemState();
+}
+
 class _HoemState  extends State<Hoem> {
   //late SmartHouse _smartHouse;
   //late bool _isLLoadingData;
 
   bool isSwitched = false;
+  bool isSwitched1 = false;
+  bool isSwitched2 = false;
+  bool isSwitched3 = false;
+  bool isSwitched4 = false;
+  bool isSwitched5 = false;
 
 //  @override
   initState() {
-    // _isLLoadingData = true;
     super.initState();
     //assert(_debugLifecycleState == _StateLifecycle.created);
   }
@@ -60,22 +74,22 @@ class _HoemState  extends State<Hoem> {
             const SizedBox(
               height: 20,
             ),
-            buildRowData('images/tempin.png', 'Tempreture inside',
-                const Text("_28 °C")),
+            buildRowData('/Users/tekie/Desktop/smarthouse/images/tempin.png', 'Tempreture inside',
+                const Text("28 °C")),
             const SizedBox(
               height: 10,
             ),
-            buildRowData('images/humdin.png', 'Humidity inside',
+            buildRowData('/Users/tekie/Desktop/smarthouse/images/humdin.png', 'Humidity inside',
                 Text("30 °C")),
             const SizedBox(
               height: 10,
             ),
-            buildRowData('images/tempout.png', 'Tempreture outside',
+            buildRowData('/Users/tekie/Desktop/smarthouse/images/tempout.png', 'Tempreture outside',
                 Text("25 °C")),
             const SizedBox(
               height: 10,
             ),
-            buildRowData('images/humed_out.png', 'Humidity outside',
+            buildRowData('/Users/tekie/Desktop/smarthouse/images/humed_out.png', 'Humidity outside',
                 Text("35 °C")),
             const SizedBox(
               height: 10,
@@ -92,13 +106,17 @@ class _HoemState  extends State<Hoem> {
             const SizedBox(
               height: 20,
             ),
-            buildRowData('images/lamp_off.png', 'Bedroom lights',
+            buildRowData(
+              isSwitched
+                ? '/Users/tekie/Desktop/smarthouse/images/lamp.png'
+                : '/Users/tekie/Desktop/smarthouse/images/lamp_off.png',
+              'Bedroom lights',
               Switch(
                 value: isSwitched,
-                onChanged: (value) {
+                onChanged: (bool value) {
                   setState(() {
                     isSwitched = value;
-                    print(isSwitched);
+                    //updateSmartHouseData(_smartHouse);
                   });
                 },
               ),
@@ -106,13 +124,17 @@ class _HoemState  extends State<Hoem> {
             const SizedBox(
               height: 10,
             ),
-            buildRowData('images/lamp_off.png', 'Livingroom lights',
+            buildRowData(
+              isSwitched1
+                  ? '/Users/tekie/Desktop/smarthouse/images/lamp.png'
+                  : '/Users/tekie/Desktop/smarthouse/images/lamp_off.png',
+              'Livingroom lights',
               Switch(
-                value: isSwitched,
-                onChanged: (value) {
+                value: isSwitched1,
+                onChanged: (bool value) {
                   setState(() {
-                    isSwitched = value;
-                    print(isSwitched);
+                    isSwitched1 = value;
+                    //updateSmartHouseData(_smartHouse);
                   });
                 },
               ),),
@@ -129,13 +151,33 @@ class _HoemState  extends State<Hoem> {
               height: 20,
             ),
             buildRowData(
-              'images/open_park.png', 'Parking door',
+              isSwitched2
+                  ? '/Users/tekie/Desktop/smarthouse/images/open_park.png'
+                  : '/Users/tekie/Desktop/smarthouse/images/close_park.png',
+              'Parking door',
               Switch(
-                value: isSwitched,
-                onChanged: (value) {
+                value: isSwitched2,
+                onChanged: (bool value) {
                   setState(() {
-                    isSwitched = value;
-                    print(isSwitched);
+                    isSwitched2 = value;
+                    //updateSmartHouseData(_smartHouse);
+                  });
+                },
+            ),),
+            SizedBox(
+              height: 10,
+            ),
+            buildRowData(
+              isSwitched3
+                  ? '/Users/tekie/Desktop/smarthouse/images/open_door.png'
+                  : '/Users/tekie/Desktop/smarthouse/images/close_door.png',
+              'House door',
+              Switch(
+                value: isSwitched3,
+                onChanged: (bool value) {
+                  setState(() {
+                    isSwitched3 = value;
+                    //updateSmartHouseData(_smartHouse);
                   });
                 },
               ),
@@ -144,14 +186,16 @@ class _HoemState  extends State<Hoem> {
               height: 10,
             ),
             buildRowData(
-              'images/open_door.png',
-              'House Door',
+              isSwitched4
+                  ? '/Users/tekie/Desktop/smarthouse/images/open_window.png'
+                  : '/Users/tekie/Desktop/smarthouse/images/close_window.png',
+              'Bedroom window',
               Switch(
-                value: isSwitched,
-                onChanged: (value) {
+                value: isSwitched4,
+                onChanged: (bool value) {
                   setState(() {
-                    isSwitched = value;
-                    print(isSwitched);
+                    isSwitched4 = value;
+                    //updateSmartHouseData(_smartHouse);
                   });
                 },
               ),
@@ -160,30 +204,16 @@ class _HoemState  extends State<Hoem> {
               height: 10,
             ),
             buildRowData(
-              'images/open_window.png',
-              'Window bedroom',
+              isSwitched5
+                  ? '/Users/tekie/Desktop/smarthouse/images/open_window.png'
+                  : '/Users/tekie/Desktop/smarthouse/images/close_window.png',
+              'Bedroom window',
               Switch(
-                value: isSwitched,
-                onChanged: (value) {
+                value: isSwitched5,
+                onChanged: (bool value) {
                   setState(() {
-                    isSwitched = value;
-                    print(isSwitched);
-                  });
-                },
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            buildRowData(
-              'images/open_window.png',
-              'Window living room',
-              Switch(
-                value: isSwitched,
-                onChanged: (value) {
-                  setState(() {
-                    isSwitched = value;
-                    print(isSwitched);
+                    isSwitched5 = value;
+                    //updateSmartHouseData(_smartHouse);
                   });
                 },
               ),
