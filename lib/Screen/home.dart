@@ -9,8 +9,6 @@ class Hoem extends StatefulWidget {
 }
 
 class _HoemState  extends State<Hoem> {
-  //late SmartHouse _smartHouse;
-  //late bool _isLLoadingData;
 
   bool isSwitched = false;
   bool isSwitched1 = false;
