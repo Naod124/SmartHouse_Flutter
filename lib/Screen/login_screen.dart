@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
             ),
             Image.asset(
               '/Users/tekie/Desktop/testconnectionflutter/images/splash.png',
-              width: 400,
+              width: double.infinity,
               height: 400,
             ),
             const SizedBox(

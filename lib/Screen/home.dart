@@ -25,8 +25,6 @@ class _HoemState  extends State<Hoem> {
 
 
 
-
-
   Widget buildRowData(String image, String title, Widget value) {
     return Row(
       children: [
@@ -83,7 +81,7 @@ class _HoemState  extends State<Hoem> {
               height: 10,
             ),
             buildRowData('/Users/tekie/Desktop/smarthouse/images/tempout.png', 'Tempreture outside',
-                Text("25 °C")),
+                Text("34")),
             const SizedBox(
               height: 10,
             ),
