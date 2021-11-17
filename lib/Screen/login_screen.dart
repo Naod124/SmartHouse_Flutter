@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
               height: 50,
             ),
             Image.asset(
-              '/Users/tekie/Desktop/testconnectionflutter/images/splash.png',
+              '/Users/tekie/Desktop/smarthouse/images/splash.png',
               width: double.infinity,
               height: 400,
             ),

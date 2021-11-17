@@ -88,12 +88,12 @@ class _HoemState  extends State<Hoem> {
               height: 20,
             ),
             buildRowData('/Users/tekie/Desktop/smarthouse/images/tempin.png', 'Temperature ',
-                Text(_smartHouse.tempIn + "°C")),
+                Text(_smartHouse.tempIn.toString() + "°C")),
             SizedBox(
               height: 10,
             ),
             buildRowData('/Users/tekie/Desktop/smarthouse/images/humdin.png', 'Humidity ',
-                Text(_smartHouse.humIn + "%")),
+                Text(_smartHouse.humIn.toString() + "%")),
             SizedBox(
               height: 10,
             ),
@@ -121,11 +121,11 @@ class _HoemState  extends State<Hoem> {
                     isSwitched = value;
                     if(isSwitched==true){
                       _smartHouse.isLightHousOn = "LightOn";
-                      updateSmartHouseData(_smartHouse,"LightOn" );
+                      updateSmartHouseData(_smartHouse,"LightSwitch","LIGHT" );
                     }
                     else{
                       _smartHouse.isLightHousOn = "LightOff";
-                      updateSmartHouseData(_smartHouse,"LightOff");
+                      updateSmartHouseData(_smartHouse,"LightSwitch","DARK");
                     }
                     //updateSmartHouseData(_smartHouse);
                   });
@@ -161,11 +161,11 @@ class _HoemState  extends State<Hoem> {
                     isSwitched2 = value;
                     if(isSwitched2==true){
                       _smartHouse.isHouseDoorOpen = "DoorOpen";
-                      updateSmartHouseData(_smartHouse,"DoorOpen" );
+                      updateSmartHouseData(_smartHouse,"DoorSwitch", "OPEN");
                     }
                     else{
                       _smartHouse.isHouseDoorOpen = "DoorClosed";
-                      updateSmartHouseData(_smartHouse,"DoorClosed");
+                      updateSmartHouseData(_smartHouse,"DoorSwitch", "CLOSED");
                     }
                     //updateSmartHouseData(_smartHouse);
                   });
@@ -187,11 +187,11 @@ class _HoemState  extends State<Hoem> {
                     isSwitched4 = value;
                     if(isSwitched4==true){
                       _smartHouse.isBeadRoomWindowOpen = "WindowOpen";
-                      updateSmartHouseData(_smartHouse,"WindowOpen" );
+                      updateSmartHouseData(_smartHouse,"WindowSwitch","open" );
                     }
                     else{
                       _smartHouse.isBeadRoomWindowOpen = "WindowClose";
-                      updateSmartHouseData(_smartHouse,"WindowClose");
+                      updateSmartHouseData(_smartHouse,"WindowSwitch","shut");
                     }
                     //updateSmartHouseData(_smartHouse);
                   });

@@ -1,6 +1,6 @@
 class SmartHouse {
-  final String tempIn;
-  final String humIn;
+  final int tempIn;
+  final int humIn;
   String isLightHousOn;
    String isHouseDoorOpen;
   String isBeadRoomWindowOpen;
@@ -17,11 +17,11 @@ class SmartHouse {
   });
 
    SmartHouse.fromJson(Map<dynamic, dynamic> json)
-      : tempIn = json['temperature'],
-        humIn = json['humidity'],
-        isHouseDoorOpen = json['door'],
-        isBeadRoomWindowOpen = json['window'],
-        isLightHousOn = json['light']
+      : tempIn = json['Temperature'],
+        humIn = json['Humidity'],
+        isHouseDoorOpen = json['DoorSwitch'],
+        isBeadRoomWindowOpen = json['WindowSwitch'],
+        isLightHousOn = json['LightSwitch']
       ;
 
   Map<String, dynamic> toJson() => {

@@ -4,49 +4,31 @@ import 'package:http/http.dart' as http;
 import 'package:smarthouse/models/smart_house.dart';
 
 SmartHouse initData = SmartHouse(
-  tempIn: '28°C',
+  tempIn: 28,
   //tempOut: '35°C',
-  humIn: '47.4',
+  humIn: 47,
   isHouseDoorOpen: "doorClosed",
   isBeadRoomWindowOpen: "windowClosed",
   isLightHousOn: "lightOff",
   //humOut: '60.1',
-  /*isLightHousOn: false,
-  isLParkingLightOn: true,
-  isParkingDoorOpen: false,
-  isHouseDoorOpen: true,
-  isBeadRoomWindowOpen: false,
-  isLivingRoomOWindowOpen: true*/
 );
 Future<SmartHouse> getHouseData() async {
-  /*SharedPreferences prefs = await SharedPreferences.getInstance();
-  var houseData = prefs.getString('myHouse');*/
-  String url = 'http://localhost:8080/Rest_smarthouse_war_exploded/api/devices';
+  String url = 'http://192.168.0.31:8080/Rest_smarthouse_war_exploded/api/devices';
   final response =
   await http.get(url, headers: {"Accept": "application/json"});
 
-  /*if (houseData == null) {
-    prefs.setString('myHouse', json.encode(initData.toJson()));
-    return initData;
-  } else {
-    return SmartHouse.fromJson(json.decode(houseData));
-  }
-   */
-
   if (response.statusCode == 200) {
-    return SmartHouse.fromJson(json.decode(response.body)[0]);
+    return SmartHouse.fromJson(json.decode(response.body));
 
   } else {
     throw Exception('Failed to load post');
   }
 }
 
-Future updateSmartHouseData(SmartHouse smartHouse, String type) async {
-  /*SharedPreferences prefs = await SharedPreferences.getInstance();
+Future updateSmartHouseData(SmartHouse smartHouse, String type, String value) async {
 
-  prefs.setString('myHouse', json.encode(smartHouse.toJson()));*/
   return http.put(
-    Uri.parse('http://localhost:8080/Rest_smarthouse_war_exploded/api/devices/' + type),
+    Uri.parse('http://192.168.0.31:8080/Rest_smarthouse_war_exploded/api/devices/device/' + type + "/" +value ),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
