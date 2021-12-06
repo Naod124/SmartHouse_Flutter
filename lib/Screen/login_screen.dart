@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'home.dart';
 
-
-
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   final TextEditingController _phone = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +17,7 @@ class LoginScreen extends StatelessWidget {
               height: 50,
             ),
             Image.asset(
-              '/Users/tekie/Desktop/smarthouse/images/splash.png',
+              'images/splash.png',
               width: double.infinity,
               height: 400,
             ),
@@ -59,15 +56,14 @@ class LoginScreen extends StatelessWidget {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     textStyle:
-                    TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 onPressed: () {
                   if (_phone.text.isEmpty) {
                     showErrorSnakBar(context, 'Please Enter the code ');
-                  }  else {
-                    Navigator.push(
+                  } else {
+                    Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => Hoem()
-                      ),
+                      MaterialPageRoute(builder: (context) => Hoem()),
                     );
                   }
                 },
@@ -92,4 +88,3 @@ class LoginScreen extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
-
