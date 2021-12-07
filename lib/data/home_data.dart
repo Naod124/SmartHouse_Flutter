@@ -14,7 +14,7 @@ SmartHouse initData = SmartHouse(
 );
 Future<SmartHouse> getHouseData() async {
   String url =
-      'http://192.168.0.31:8080/Rest_smarthouse_war_exploded/api/devices';
+      'http://192.168.1.126:7777/Rest_smarthouse_war_exploded/api/devices';
   final response =
       await http.get(Uri.parse(url), headers: {"Accept": "application/json"});
 
@@ -29,7 +29,7 @@ Future updateSmartHouseData(
     SmartHouse smartHouse, String type, String value) async {
   return http.put(
     Uri.parse(
-        'http://192.168.0.31:8080/Rest_smarthouse_war_exploded/api/devices/device/' +
+        'http://192.168.1.126:7777/Rest_smarthouse_war_exploded/api/devices/device/' +
             type +
             "/" +
             value),

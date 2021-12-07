@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:smart_house/data/home_data.dart';
 import 'package:smart_house/models/smart_house.dart';
 import 'package:smart_house/widgets/drawer.dart';
+import 'dart:async';
+
 
 class Hoem extends StatefulWidget {
   Hoem({Key? key}) : super(key: key);
@@ -16,13 +18,23 @@ class _HoemState extends State<Hoem> {
 
   @override
   initState() {
+    const fiveSeconds = const Duration(seconds: 1);
     _isLLoadingData = true;
-    getHouseData().then((value) {
+    Timer.periodic(fiveSeconds, (Timer t) =>    getHouseData().then((value) {
+      setState(() {
+        _smartHouse = value;
+        _isLLoadingData = false;
+      });
+    }));
+
+    /*getHouseData().then((value) {
       setState(() {
         _smartHouse = value;
         _isLLoadingData = false;
       });
     });
+
+     */
 
     super.initState();
   }
