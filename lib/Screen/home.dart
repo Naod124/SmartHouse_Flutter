@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:smart_house/data/home_data.dart';
 import 'package:smart_house/models/smart_house.dart';
@@ -15,7 +17,27 @@ class Hoem extends StatefulWidget {
 class _HoemState extends State<Hoem> {
   late SmartHouse _smartHouse;
   late bool _isLLoadingData;
+  bool isSwitched = false;
+  bool isSwitched1 = false;
+  bool isSwitched2 = false;
+  bool isSwitched3 = false;
+  bool isSwitched4 = false;
+  bool isSwitched5 = false;
 
+void main(){
+  checkStatus();
+}
+  void checkStatus(){
+    if( _smartHouse.isHouseDoorOpen.toString()=="OPEN"){
+      isSwitched2=true;
+    }
+    if(_smartHouse.isLightHousOn.toString()=="LIGHT"){
+      isSwitched=true;
+    }
+    if(_smartHouse.isBeadRoomWindowOpen.toString()=="open"){
+      isSwitched4=true;
+    }
+  }
   @override
   initState() {
     const fiveSeconds = const Duration(seconds: 1);
@@ -24,6 +46,7 @@ class _HoemState extends State<Hoem> {
       setState(() {
         _smartHouse = value;
         _isLLoadingData = false;
+        checkStatus();
       });
     }));
 
@@ -35,16 +58,11 @@ class _HoemState extends State<Hoem> {
     });
 
      */
-
+ /*
+*/
     super.initState();
   }
 
-  bool isSwitched = false;
-  bool isSwitched1 = false;
-  bool isSwitched2 = false;
-  bool isSwitched3 = false;
-  bool isSwitched4 = false;
-  bool isSwitched5 = false;
 
   Widget buildRowData(String image, String title, Widget value) {
     return Row(
@@ -74,6 +92,7 @@ class _HoemState extends State<Hoem> {
     return _isLLoadingData
         ? Center(
             child: CircularProgressIndicator(),
+
           )
         : Scaffold(
             drawer: AppDrawer(),
@@ -123,7 +142,7 @@ class _HoemState extends State<Hoem> {
                     'Lights',
                     Switch(
                       value: isSwitched,
-                      onChanged: (bool value) {
+                      onChanged: (value) {
                         setState(() {
                           isSwitched = value;
                           if (isSwitched == true) {
@@ -162,7 +181,7 @@ class _HoemState extends State<Hoem> {
                     'Door',
                     Switch(
                       value: isSwitched2,
-                      onChanged: (bool value) {
+                      onChanged: (value) {
                         setState(() {
                           isSwitched2 = value;
                           if (isSwitched2 == true) {
@@ -189,7 +208,7 @@ class _HoemState extends State<Hoem> {
                     'Window',
                     Switch(
                       value: isSwitched4,
-                      onChanged: (bool value) {
+                      onChanged: (value) {
                         setState(() {
                           isSwitched4 = value;
                           if (isSwitched4 == true) {
