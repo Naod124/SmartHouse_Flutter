@@ -10,11 +10,12 @@ SmartHouse initData = SmartHouse(
   isHouseDoorOpen: "doorClosed",
   isBeadRoomWindowOpen: "windowClosed",
   isLightHousOn: "lightOff",
+  isLightLivingRoom: "lightOn"
   //humOut: '60.1',
 );
 Future<SmartHouse> getHouseData() async {
   String url =
-      'http://192.168.0.24:7777/Rest_smarthouse_war_exploded/api/devices';
+      'http://192.168.1.72:8080/NewRestAPI_war_exploded/api/devices';
   final response =
       await http.get(Uri.parse(url), headers: {"Accept": "application/json"});
 
