@@ -15,7 +15,7 @@ SmartHouse initData = SmartHouse(
 );
 Future<SmartHouse> getHouseData() async {
   String url =
-      'http://192.168.1.72:8080/NewRestAPI_war_exploded/api/devices';
+      'http://192.168.0.34:8888/demo_house_war_exploded/api/devices';
   final response =
       await http.get(Uri.parse(url), headers: {"Accept": "application/json"});
 
@@ -26,13 +26,31 @@ Future<SmartHouse> getHouseData() async {
   }
 }
 
+Future getSpecValue(
+    SmartHouse smartHouse, String type,String id) async {
+  String url =
+      'http://192.168.0.34:8888/demo_house_war_exploded/api/devices' +"/"+
+          type +
+          "/" + id
+          ;
+  final response =
+  await http.get(Uri.parse(url), headers: {"Accept": "application/json"});
+
+  if (response.statusCode == 200) {
+    return SmartHouse.fromJson(json.decode(response.body));
+  } else {
+    throw Exception('Failed to load post');
+  }
+}
+
+
 Future updateSmartHouseData(
-    SmartHouse smartHouse, String type, String value) async {
+    SmartHouse smartHouse, String type,String id, String value) async {
   return http.put(
     Uri.parse(
-        'http://192.168.0.24:7777/Rest_smarthouse_war_exploded/api/devices/device/' +
+        'http://192.168.0.34:8888/demo_house_war_exploded/api/devices' +"/"+
             type +
-            "/" +
+            "/" + id +"/"+
             value),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',

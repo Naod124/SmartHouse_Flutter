@@ -49,7 +49,8 @@ void main(){
   checkStatus();
 }
   void checkStatus(){
-    if( _smartHouse.isHouseDoorOpen.toString()=="OPEN"){
+
+    if( _smartHouse.isHouseDoorOpen.toString()=="true"){
       doorStatus=true;
     }
     if(_smartHouse.isLightHousOn.toString()=="LIGHT"){
@@ -173,11 +174,11 @@ void main(){
                           if (bedroomLamp == true) {
                             _smartHouse.isLightHousOn = "LightOn";
                             updateSmartHouseData(
-                                _smartHouse, "LightSwitch", "LIGHT");
+                                _smartHouse, "lights", "1", "true");
                           } else {
                             _smartHouse.isLightHousOn = "LightOff";
                             updateSmartHouseData(
-                                _smartHouse, "LightSwitch", "DARK");
+                                _smartHouse, "lights", "1", "false");
                           }
                           //updateSmartHouseData(_smartHouse);
                         });
@@ -198,11 +199,11 @@ void main(){
                           if (livingRoomLight == true) {
                             _smartHouse.isLightLivingRoom = "LightOn";
                             updateSmartHouseData(
-                                _smartHouse, "LightSwitch", "LIGHT");
+                                _smartHouse, "lights", "2", "true");
                           } else {
                             _smartHouse.isLightLivingRoom = "LightOff";
                             updateSmartHouseData(
-                                _smartHouse, "LightSwitch", "DARK");
+                                _smartHouse, "lights", "2", "false");
                           }
                           //updateSmartHouseData(_smartHouse);
                         });
@@ -234,11 +235,11 @@ void main(){
                           if (doorStatus == true) {
                             _smartHouse.isHouseDoorOpen = "DoorOpen";
                             updateSmartHouseData(
-                                _smartHouse, "DoorSwitch", "OPEN");
+                                _smartHouse, "doors", "1", "true");
                           } else {
                             _smartHouse.isHouseDoorOpen = "DoorClosed";
                             updateSmartHouseData(
-                                _smartHouse, "DoorSwitch", "CLOSED");
+                                _smartHouse, "doors", "1", "false");
                           }
                           //updateSmartHouseData(_smartHouse);
                         });
@@ -261,19 +262,42 @@ void main(){
                           if (windowStatus == true) {
                             _smartHouse.isBeadRoomWindowOpen = "WindowOpen";
                             updateSmartHouseData(
-                                _smartHouse, "WindowSwitch", "open");
+                                _smartHouse, "windows", "1", "true");
                           } else {
                             _smartHouse.isBeadRoomWindowOpen = "WindowClose";
                             updateSmartHouseData(
-                                _smartHouse, "WindowSwitch", "shut");
+                                _smartHouse, "windows", "1", "false");
                           }
                           //updateSmartHouseData(_smartHouse);
                         });
                       },
                     ),
                   ),
+                  Container(
+                    padding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                    width: double.infinity,
+                    color: Colors.black12,
+                    child: Text(
+                      "Fire Alarm",
+                      style: TextStyle(color: Colors.grey, fontSize: 20),
+                    ),
+                  ),
                   SizedBox(
                     height: 10,
+                  ),
+                  buildRowData(
+                    'images/larmoff.png',
+                    'Alarm',
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          textStyle:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
+                      onPressed: () {
+                          updateSmartHouseData(
+                       _smartHouse, "lights", "3", "false");
+                        },
+                      child: Text('Alarm off'),
+                    ),
                   ),
                 ],
               ),
